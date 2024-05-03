@@ -1,0 +1,16 @@
+{% extends 'AppBlogger/padre.html' %}
+
+{% load static %}
+
+{% block titleView %}Login{% endblock %}
+
+{% block contentCabezal %}Login{% endblock %}
+
+{% block contentView %}
+<form id="formLogin" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit"> Iniciar Sesión</button>
+        {{mensaje}}
+</form>
+{% endblock %}

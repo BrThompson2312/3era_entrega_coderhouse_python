@@ -1,0 +1,144 @@
+{% extends 'AppBlogger/padre.html' %}
+
+{% load static %}
+
+{% block titleView %}Blogs{% endblock %}
+
+{% block contentCabezal %}Blogs{% endblock %}
+
+{% block contentView %}
+<style>
+        .containerBlogs {
+                color: white;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+                width: 100%;
+                margin: 0;
+                margin-top: 10px;
+                margin-bottom: 10px;
+        }
+        .containerBlogs div header {
+                background-color: black;
+                border-bottom: 5px solid #747474;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 1em;
+                border-radius: 10px 10px 0px 0px;
+        }
+        .containerBlogs div header h1 {
+                margin-right: 40px;
+                text-transform: uppercase;
+        }
+        .containerBlogs div header div {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+        }
+        .containerBlogs div aside {
+                background: brown;
+                border-radius: 0px 0px 10px 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between
+        }
+        .containerBlogs aside div {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                width: 100%;
+                gap: 10px;
+        }
+        .containerBlogs aside div a {
+                color: white;
+
+        }
+        .containerBlogs aside h4 {
+                text-transform: capitalize;
+        }
+        .containerBlogs aside img {
+                height: 250px;
+                width: 250px;
+        }
+        .blog {
+                width: 70%;
+                position: relative;
+        }
+        .deleteBlog {
+                position: absolute;
+                top: 50%;
+                left: -70px;
+                border-radius: 100%;
+                transform: translate(0, -50%);
+                height: 40px;
+                width: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: darkred;
+                transition: background-color .2s;
+                cursor: pointer;
+                text-decoration: none;
+                color: white;
+        }
+        .updateBlog {
+                position: absolute;
+                top: 50%;
+                left: -140px;
+                border-radius: 100%;
+                transform: translate(0, -50%);
+                height: 40px;
+                width: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: darkgoldenrod;
+                transition: background-color .2s;
+                cursor: pointer;
+                text-decoration: none;
+                color: white;
+        }
+</style>
+<main class="containerBlogs">
+{% for blog in Blogs %}
+        <div class="blog">
+                {% if request.user.is_superuser %}
+                        <a href="{% url 'DeleteBlog' blog.id %}" class="deleteBlog">
+                                <i class="fa-solid fa-trash-can"></i>
+                        </a>
+                        <a href="{% url 'UpdateBlog' blog.id %}" class="updateBlog">
+                                <i class="fa-solid fa-pen"></i>
+                        </a>
+                {% endif %}
+                <header>
+                        <h1>{{blog.titulo}}</h1>
+                        <div>
+                                <h4>{{blog.autor}}</h4>
+                                |
+                                <h4>{{blog.fecha}}</h4>
+                        </div>
+                </header>
+                <aside>
+                        {% if blog.imagen != "" %}
+                        <img src="{{blog.imagen.url}}" alt="Imagen del blog">
+                        <div>
+                                <h4>{{blog.subtitulo}}</h4>
+                                <a href="{% url 'Nopage' %}">Ver blog</a>
+                        </div>
+                        {% else %}
+                        <div style="padding: 10px">
+                                <h4>{{blog.subtitulo}}</h4>
+                                <a href="{% url 'Nopage' %}">Ver blog</a>
+                        </div>
+                        {% endif %}
+                </aside>
+        </div>
+{% endfor %}
+</main>
+{% endblock %}

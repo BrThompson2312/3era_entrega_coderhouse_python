@@ -1,0 +1,15 @@
+{% extends 'AppBlogger/padre.html' %}
+
+{% load static %}
+
+{% block titleView %}Login{% endblock %}
+
+{% block contentCabezal %}Cambiar Contraseña{% endblock %}
+
+{% block contentView %}
+<form id="formLogin" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit">Cambiar</button>
+</form>
+{% endblock %}

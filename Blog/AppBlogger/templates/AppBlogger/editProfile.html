@@ -1,0 +1,62 @@
+{% extends 'AppBlogger/padre.html' %}
+
+{% load static %}
+
+{% block contentTitle %}
+    <title>Editar Perfil</title>
+{% endblock %}
+
+{% block contentCabezal %}Editar Perfil{% endblock %}
+
+{% block contentView %}
+<style>
+    #formEdit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    #formEdit p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+        position: relative;
+    }
+    
+    #formEdit input {
+        background-color: transparent;
+        border: none;
+        padding: 10px;
+        border-top: 2px solid black;
+        border-left: 2px solid black;
+        border-right: 5px solid black;
+        border-bottom: 5px solid black;
+        border-radius: 10px;
+    }
+    #formEdit p label {
+        font-weight: bold;
+    }
+    #formEdit button {
+        background: brown;
+        padding: 10px;
+        border: none;
+        color: white;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: background .2s;
+        cursor: pointer;
+    }
+    #formEdit button:hover {
+        background: darkred;
+    }
+</style>
+<form id="formEdit" style="margin: 10px" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{miFormulario.as_p}}
+    <button type="submit">Editar</button>
+</form>
+{% endblock %}

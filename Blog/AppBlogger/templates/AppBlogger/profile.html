@@ -1,0 +1,37 @@
+{% extends 'AppBlogger/padre.html' %}
+
+{% load static %}
+
+{% block titleView %}Perfil{% endblock %}
+
+{% block contentCabezal %}Perfil{% endblock %}
+
+{% block contentView %}
+<div class="infoAccount">
+        <h1>Username</h1>
+        <p>{{request.user.username}}</p>
+        <h1>Email</h1>
+        {% if request.user.email != "" %}
+        <p>{{request.user.email}}</p>
+        {% endif %}
+        {% if request.user.first_name != "" %}
+        <h1>Nombre</h1>
+        <p>{{request.user.first_name}}</p>
+        {% endif %}
+        {% if request.user.last_name != "" %}
+        <h1>Apellido</h1>
+        <p>{{request.user.last_name}}</p>
+        {% endif %}
+        <a href="{% url 'EditProfile' %}">Editar</a>
+        |
+        <a href="{% url 'CambiarContrasenia' %}">Cambiar Contraseña</a>
+</div>
+<style>
+        .infoAccount {
+                margin: 10px;
+        }
+        .infoAccount p {
+                margin-bottom: 10px;
+        }
+</style>
+{% endblock %}

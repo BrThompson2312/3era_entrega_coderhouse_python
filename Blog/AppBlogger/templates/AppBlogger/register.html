@@ -1,0 +1,15 @@
+{% extends 'AppBlogger/padre.html' %}
+
+{% load static %}
+
+{% block titleView %}Registrarse{% endblock %}
+
+{% block contentCabezal %}Registrate!{% endblock %}
+
+{% block contentView %}
+<form id="formLogin" method="POST" encytpe="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Registrate!</button>
+</form>
+{% endblock %}

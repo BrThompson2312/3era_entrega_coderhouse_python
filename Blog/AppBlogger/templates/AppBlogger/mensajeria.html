@@ -1,0 +1,78 @@
+{% extends 'AppBlogger/padre.html' %}
+
+{% load static %}
+
+{% block titleView %}Mensajeria{% endblock %}
+
+{% block contentCabezal %}Mensajeria{% endblock %}
+
+{% block contentView %}
+<style>
+    .user_msg {
+        margin-bottom: 30px;
+    }
+    .user_msg h3 {
+        margin-bottom: 10px;
+    }
+    .user_msg p {
+        margin-left: 10px;
+    }
+    .user_msg span {
+        background-color: gray;
+        padding: 5px;
+        border-radius: 10px;
+    }
+    .send_msg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        gap: 10px;
+    }
+    .send_msg {
+        margin: 10px;
+        background-color: gray;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .send_msg label {
+        color: black;
+        font-weight: bold;
+    }
+    .send_msg input,
+    .send_msg button {
+        outline: none;
+        border: none;
+        padding: 10px;
+    }
+    .send_msg input[type="text"] {
+        background-color: transparent;
+        width: 100%;
+        border-bottom: 2px solid black;
+    }
+    .send_msg button {
+        background-color: green;
+        border: none;
+        cursor: pointer;
+        color: white;
+        border-radius: 100%;
+    }
+</style>
+<div class="containerMessages" style="margin: 1em"> 
+    {% for msg in Message %}
+        <div class="user_msg">
+            {% if msg.username.is_superuser %}
+                <h3>{{msg.username}} <span style="color: gold">Admin</span></h3>
+            {% else %}
+                <h3>{{msg.username}} <span style="color: skyblue">Blogger</span></h3>
+            {% endif %}
+            <p>{{msg.message}}</p>
+        </div>
+    {% endfor %}
+</div>
+<form class="send_msg" method="POST" enctype="multipart/form-data">{% csrf_token %}
+    {{form}}
+    <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+</form>
+
+{% endblock %}

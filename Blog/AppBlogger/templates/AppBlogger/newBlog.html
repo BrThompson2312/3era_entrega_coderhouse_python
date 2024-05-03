@@ -1,0 +1,67 @@
+{% extends 'AppBlogger/padre.html' %}
+
+{% load static %}
+
+{% block titleView %}Escribe un blog!{% endblock %}
+
+{% block contentCabezal %}Escribe un blog!{% endblock %}
+
+{% block contentView %}
+
+{% if blogForm.errors %}
+    <p>Estan mal los datos, revisar</p>
+{% endif %}
+
+<style>
+    #formLogin {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            text-align: start;
+            gap: 10px;
+            margin-top: 10px;
+    }
+    #formLogin p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+    }
+    #formLogin input {
+            background-color: transparent;
+            border: none;
+            padding: 10px;
+            border-top: 2px solid black;
+            border-left: 2px solid black;
+            border-right: 5px solid black;
+            border-bottom: 5px solid black;
+            border-radius: 10px;
+    }
+    #formLogin p label {
+            font-weight: bold;
+    }
+    #formLogin button {
+            background: brown;
+            padding: 10px;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background .2s;
+            cursor: pointer;
+    }
+    #formLogin button:hover {
+            background: darkred;
+    }
+</style>
+
+<form id="formLogin" style="margin: 10px" action="" method="POST">{% csrf_token %}
+    <table>
+            {{ blogForm.as_table }}
+    </table>
+    <button type="submit">Crear blog</button>
+</form>
+
+{% endblock %}

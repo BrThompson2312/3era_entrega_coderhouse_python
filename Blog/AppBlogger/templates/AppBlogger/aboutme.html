@@ -1,0 +1,55 @@
+{% extends 'AppBlogger/padre.html' %}
+
+{% load static %}
+
+{% block titleView %}Acerca de mi{% endblock %}
+
+{% block contentCabezal %}Acerca de mi{% endblock %}
+
+{% block contentView %}
+    <style>
+        .aboutme {
+            margin: 1em;
+        }
+        .aboutme dt {
+            font-weight: bold;
+        }
+        .aboutme dd {
+            margin-top: 5px;
+            margin-left: 30px;
+            margin-bottom: 30px;
+        }
+        .aboutme dd li {
+            list-style: none;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+    <dl class="aboutme">
+        <dt>Nombre: </dt>
+        <dd>Bruno Gómez</dd>
+        <dt>Edad: </dt>
+        <dd>19</dd>
+        <dt>Titulos</dt>    
+        <dd>
+            <li>Bachiller informático</li>
+        </dd>
+        <dt>Hobbies</dt>
+        <dd>
+            <li>Videojuegos</li>
+            <li>Musica</li>
+        </dd>
+        <dt>Mis habilidades en la programación</dt>
+        <dd>
+            <li>JAVA</li>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JS</li>
+            <li>PHP</li>
+            <li>MySQL</li>
+            <li>Python (en curso)</li>
+        </dd>
+        <dt>Carreras activas</dt>
+        <dd>Analista en tecnología de la información</dd>
+    </dl>
+{% endblock %}

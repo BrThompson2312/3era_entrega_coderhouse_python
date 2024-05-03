@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titleView %}{% endblock %}</title>
+    <script src="https://kit.fontawesome.com/4ffb78f01e.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        body {
+            background-image: url('../../../media/htmlImages/bg.png');
+            width: 100%;
+        }
+        #navApp {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #141414;
+            color: white;
+            padding: 1em;
+        }
+        #navApp nav ul {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        #navApp nav ul li {
+            margin-right: 1em;
+            list-style: none;
+        }
+        #navApp nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color .3s;
+        }
+        #navApp nav ul li a:hover {
+            color: red;
+        }
+        main {
+            margin: 1em;
+        }
+        .logout {
+            background-color: red;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        .logout a:hover{
+            color: white !important;
+        }
+        .imgAccount {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .imgAccount img {
+            border-radius: 100%;
+            background-color: brown;
+            height: 40px;
+            width: 40px;
+        }
+        .cabezal {
+            color: black;
+            padding: 20px;
+            width: 70%;
+            margin: 0 auto;
+            text-align: center;
+            border-bottom: 5px solid brown;
+        }
+        #formLogin {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            text-align: start;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        #formLogin p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+        }
+        #formLogin input {
+            border: none;
+            padding: 10px;
+            border-top: 2px solid black;
+            border-left: 2px solid black;
+            border-right: 5px solid black;
+            border-bottom: 5px solid black;
+            border-radius: 10px;
+        }
+        #formLogin p label {
+            font-weight: bold;
+        }
+        #formLogin button {
+            background: brown;
+            padding: 10px;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background .2s;
+            cursor: pointer;
+        }
+        #formLogin button:hover {
+            background: darkred;
+        }
+    </style>
+</head>
+<body>
+    <header id="navApp">
+        <h1>AppBlogger</h1>
+        <nav>
+            <ul>
+                {% if not request.user.is_authenticated %}
+                <li><a href="{% url 'Login' %}">Login</a></li>
+                <li><a href="{% url 'Signup' %}">Registrarse</a></li>
+                {% else %}
+                <li><a href="{% url 'Pages' %}">Home</a></li>
+                <li><a href="{% url 'NewBlog' %}">Escribe un blog!</a></li>
+                <li><a href="{% url 'Messages' %}">Mensajeria</a></li>
+                <li class="imgAccount">
+                    {% if request.user.avatar %}
+                    <img src="{{request.user.avatar.imagen.url}}">
+                        {% if request.user.is_superuser %}
+                        <div style="background-color: gray; padding: 5px; border-radius: 10px; font-weight: bold">
+                            <a href="{% url 'Profile' %}">{{request.user.username}}</a>
+                            <span style="color: goldenrod">Admin</span>
+                        </div>
+                        {% else %}
+                        <div style="background-color: gray; padding: 5px; border-radius: 10px; font-weight: bold">
+                            <a href="{% url 'Profile' %}">{{request.user.username}}</a>
+                            <span style="color: skyblue">Blogger</span>
+                        </div>
+                        {% endif %}
+                    {% else %}
+                        {% if request.user.is_superuser %}
+                        <div style="background-color: gray; padding: 5px; border-radius: 10px; font-weight: bold">
+                            <a href="{% url 'Profile' %}">{{request.user.username}}</a>
+                            <span style="color: gold">Admin</span>
+                        </div>
+                        {% else %}
+                        <div style="background-color: gray; padding: 5px; border-radius: 10px; font-weight: bold">
+                            <a href="{% url 'Profile' %}">{{request.user.username}}</a>
+                            <span style="color: skyblue">Blogger</span>
+                        </div>
+                        {% endif %}
+                    {% endif %}
+                </li>
+                <li class="logout"><a href="{% url 'Logout' %}">Logout</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <h1 class="cabezal">{% block contentCabezal %}{% endblock %}</h1>
+    <div style="width: 70%; margin: 0 auto; position: relative;">
+    {% block contentView %}
+
+    {% endblock %}
+    </div>
+</body>
+</html>
