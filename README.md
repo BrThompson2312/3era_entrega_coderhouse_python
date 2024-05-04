@@ -1,4 +1,12 @@
 <h1>AppBlogger v2.2.0</h1>
+
+<p>
+	Usuario para acceder al proyecto:
+	<ul>
+		<li>Usuario: admin</li>
+		<li>Contraseña: passpython3</li>
+	</ul>
+</p>
 <h2>Documentación</h2>
 <ul>
 	<li>La fecha de blog debe ser en formato YY-MM-DD, de lo contrario fallará</li>
@@ -19,4 +27,5 @@
 		</ul>
 	 </li>
 </ul>
-<h1>Se realizo la entrega de forma individual</h1>
+<h3>Se realizo la entrega de forma individual</h3>
+<p>Link video proyecto: https://drive.google.com/file/d/1-rJtlYyELPVLakDP2H5VINNf36npofVB/view?usp=sharing</p>
