@@ -8,13 +8,15 @@
 	<li>Con respecto al punto anterior, el aparto de appblogger/about/ se podrá acceder sin importar si haya iniciado sesión</li>
 	<li>
 		Todas las rutas disponibles:
-		<li>appblogger/</li>
-		<li>appblogger/newblog/</li>
-		<li>appblogger/messages/</li>
-		<li>appblogger/about/</li>
-		<li>appblogger/accounts/login/</li>
-		<li>appblogger/accounts/signup/</li>
-		<li>appblogger/accounts/profile/</li>
+		<ul>
+			<li>appblogger/</li>
+			<li>appblogger/newblog/</li>
+			<li>appblogger/messages/</li>
+			<li>appblogger/about/</li>
+			<li>appblogger/accounts/login/</li>
+			<li>appblogger/accounts/signup/</li>
+			<li>appblogger/accounts/profile/</li>
+		</ul>
 	 </li>
 </ul>
 <h1>Se realizo la entrega de forma individual</h1>
